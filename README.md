@@ -139,3 +139,4 @@ A JSON response is returned with a message if spendingPoints are equal or below 
 2. Learn how to send simple requests for Postman [here](https://learning.postman.com/docs/getting-started/sending-the-first-request/)
 3. After running `npm run dev`. You can begin making requests.
 4. If you want to change the initial transactions. Make change to the json file `transactions.json` in the main directory.
+   Remember this will fail the mocha tests. Mocha tests run with an inital setup transactions.
