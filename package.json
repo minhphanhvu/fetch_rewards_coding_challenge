@@ -1,0 +1,26 @@
+{
+  "name": "fetch_rewards",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minhphanhvu/fetch_rewards_coding_challenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/minhphanhvu/fetch_rewards_coding_challenge/issues"
+  },
+  "homepage": "https://github.com/minhphanhvu/fetch_rewards_coding_challenge#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
