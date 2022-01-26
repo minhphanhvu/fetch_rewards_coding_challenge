@@ -11,7 +11,26 @@ chai.should();
 chai.use(chaiHTTP);
 
 describe("PAYERS", () => {
-  describe("POST /api", () => {
+  describe("GET /api/balance", () => {
+    it("Should successfully retrieve the balances", (done) => {
+      const data = fs.readFileSync(
+        path.join(__dirname, "../transactions.json"),
+        "utf-8"
+      );
+      let transactions = JSON.parse(data).transactions;
+      const balances = getBalances(transactions);
+      chai
+        .request(url)
+        .get("/balance")
+        .end((err, res) => {
+          res.should.have.status(200);
+          expect(res.body.balances).to.deep.equal(balances);
+          done();
+        });
+    });
+  });
+
+  describe("POST /api/add", () => {
     it("Should successfully add a new transaction", (done) => {
       const transaction = {
         payer: "DANNON",

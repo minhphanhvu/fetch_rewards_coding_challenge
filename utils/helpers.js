@@ -53,6 +53,33 @@ const validBalance = (transactions, payer, points) => {
   return true;
 };
 
+/*
+function getBalances
+input:
+  - an array of objects (transactions)
+output:
+  - An object to represent the total points of each payer.
+{
+  "balances": {
+    "DANNON": 1100,
+    "UNILEVER": 200,
+    "MILLER COORS": 10000
+  }
+}
+*/
+const getBalances = (transactions) => {
+  const balances = {};
+  for (transaction of transactions) {
+    let payer = transaction.payer;
+    if (payer in balances) {
+      balances[payer] += transaction.points;
+    } else {
+      balances[payer] = transaction.points;
+    }
+  }
+  return balances;
+};
+
 // Additional helper functions
 
 /*
@@ -94,4 +121,4 @@ const getBalance = (transactions, payer) => {
   return balance;
 };
 
-module.exports = { validParameters, validBalance };
+module.exports = { validParameters, validBalance, getBalances };

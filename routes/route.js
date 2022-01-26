@@ -3,7 +3,11 @@ const router = express.Router();
 const fs = require("fs");
 const path = require("path");
 
-const { validParameters, validBalance } = require("../utils/helpers");
+const {
+  validParameters,
+  validBalance,
+  getBalances,
+} = require("../utils/helpers");
 
 // Read transactions from a local file
 const data = fs.readFileSync(
@@ -33,6 +37,14 @@ router.post("/add", (req, res) => {
   return res.status(201).json({
     success: "new transaction added.",
     transaction: newTransaction,
+  });
+});
+
+// GET /api/balance to get the total points of all payers.
+router.get("/balance", (req, res) => {
+  const balances = getBalances(transactions);
+  return res.status(200).json({
+    balances,
   });
 });
 

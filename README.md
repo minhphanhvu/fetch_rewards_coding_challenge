@@ -55,3 +55,23 @@ Additionally, then new transaction cannot make the payer's points go below 0.
   "fail": "Cannot process. This transaction will make the payer's points be negative."
 }
 ```
+
+### 2. GET /api/payers/balance
+
+2.1 Expected Payload
+
+None
+
+2.2 Successful Response
+
+A JSON is returned with the 200 status code.
+
+```json
+{
+  "balances": {
+    "DANNON": 1100,
+    "UNILEVER": 200,
+    "MILLER COORS": 10000
+  }
+}
+```
