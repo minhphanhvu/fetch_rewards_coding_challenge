@@ -14,8 +14,21 @@ An API web service built with Express server that accepts HTTP requests and retu
 - Transactions cannot be added if that transaction makes a payer's points below 0.
 - Transactions cannot be added if having extra or missing parameters.
 - Transactions cannot be added if parameters have the wrong data types.
+- When spending, any subtraction from a payer's points will be a new transaction and will be added to the existing transactions.
+- Since there is no persistent database, and the trnasactions are stored in memory. The mocha tests are running with a persistent memory without refershing the transactions after each test.
+- Cannot spend negative points.
 
-### 1. POST /api/payers/add
+## Getting Started
+
+1. Install [Node](https://nodejs.org/en/).
+2. Clone the repository to your local working place.
+3. Run `npm install` to install dependencies.
+   If you have trouble while installing, it is best to delete the `package-lock.json` file and `node_modules` folder, then run `npm install`. While developing it this web service, the version of node is v16.3.0 and npm 7.15.1.
+4. Run `npm run dev` to start the server.
+5. Visit your local host at port 5000 `http://localhost:5000`. You should see the message `Your server is running on port 5000`.
+6. To run the test, issue command `npm test`.
+
+### 1. POST /api/add
 
 Add a new transaction.
 
@@ -56,7 +69,7 @@ Additionally, then new transaction cannot make the payer's points go below 0.
 }
 ```
 
-### 2. GET /api/payers/balance
+### 2. GET /api/balance
 
 2.1 Expected Payload
 
@@ -73,5 +86,49 @@ A JSON is returned with the 200 status code.
     "UNILEVER": 200,
     "MILLER COORS": 10000
   }
+}
+```
+
+### 3. POST /api/spend
+
+3.1 Expected Payload
+
+One parameter type `interger` is expected with a key `points`.
+
+```json
+{
+  "points": 5000
+}
+```
+
+3.2 Successful Response
+The new transaction is returned in JSON format with a 200 status code.
+
+```json
+{
+  "response": [
+    {
+      "payer": "DANNON",
+      "points": -100
+    },
+    {
+      "payer": "UNILEVER",
+      "points": -200
+    },
+    {
+      "payer": "MILLER COORS",
+      "points": -4700
+    }
+  ]
+}
+```
+
+3.3 Error Reponse
+
+A JSON response is returned with a message if spendingPoints are equal or below 0. Status code is 422.
+
+```json
+{
+  "fail": "Cannot spend negative or 0 points."
 }
 ```

@@ -81,4 +81,23 @@ describe("PAYERS", () => {
         });
     });
   });
+
+  describe("POST /api/spend", () => {
+    it("Should successfully return correct results after spending 5000", (done) => {
+      const expectedResponse = [
+        { payer: "DANNON", points: -100 },
+        { payer: "UNILEVER", points: -200 },
+        { payer: "MILLER COORS", points: -4700 },
+      ];
+      chai
+        .request(url)
+        .post("/spend")
+        .send({ points: 5000 })
+        .end((err, res) => {
+          res.should.have.status(200);
+          expect(res.body.response).to.deep.equal(expectedResponse);
+          done();
+        });
+    });
+  });
 });
