@@ -26,7 +26,7 @@ An API web service built with Express server that accepts HTTP requests and retu
    If you have trouble while installing, it is best to delete the `package-lock.json` file and `node_modules` folder, then run `npm install`. While developing it this web service, the version of node is v16.3.0 and npm 7.15.1.
 4. Run `npm run dev` to start the server.
 5. Visit your local host at port 5000 `http://localhost:5000`. You should see the message `Your server is running on port 5000`.
-6. To run the test, issue command `npm test`.
+6. To run the mocha tests, issue command `npm test`.
 
 ### 1. POST /api/add
 
