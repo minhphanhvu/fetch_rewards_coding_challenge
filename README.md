@@ -132,3 +132,10 @@ A JSON response is returned with a message if spendingPoints are equal or below 
   "fail": "Cannot spend negative or 0 points."
 }
 ```
+
+### Manual Test with Postman
+
+1. Download [Postman](https://www.postman.com/downloads/)
+2. Learn how to send simple requests for Postman [here](https://learning.postman.com/docs/getting-started/sending-the-first-request/)
+3. After running `npm run dev`. You can begin making requests.
+4. If you want to change the initial transactions. Make change to the json file `transactions.json` in the main directory.
